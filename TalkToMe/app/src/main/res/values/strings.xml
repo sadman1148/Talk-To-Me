@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Talk To Me</string>
+    <string name="red">R3D</string>
+    <string name="envy">ENVY</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">LOGIN</string>
+    <string name="sign_up">SIGN UP</string>
+</resources>
