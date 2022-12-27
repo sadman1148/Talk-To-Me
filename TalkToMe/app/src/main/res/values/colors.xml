@@ -7,10 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-
-    // Customs
     <color name="red">#FF0000</color>
     <color name="green">#4CAF50</color>
+    <color name="lime_green">#9DFF3B</color>
     <color name="blue">#2196F3</color>
-
+    <color name="Yellow">#FFEB3B</color>
+    <color name="Orange">#FF9800</color>
+    <color name="grey">#999999</color>
 </resources>

@@ -2,27 +2,42 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
     tools:context=".fragments.Login">
 
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="30dp"
+        android:fontFamily="@font/caveat_brush"
+        android:gravity="center"
+        android:shadowColor="@color/Yellow"
+        android:shadowRadius="25"
+        android:text="@string/talk_to_me_baby"
+        android:textColor="@color/Yellow"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayoutCompat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linearLayoutCompat"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="75dp"
         android:layout_marginStart="75dp"
         android:layout_marginEnd="75dp"
-        android:background="@color/white"
+        android:background="@drawable/login_card_bg"
         android:gravity="center"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
             android:id="@+id/et_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -32,12 +47,13 @@
             android:inputType="text"
             android:textAlignment="center" />
 
-        <com.google.android.material.textfield.TextInputEditText
+        <EditText
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="50dp"
             android:layout_marginTop="10dp"
+            android:focusable="true"
             android:hint="@string/password"
             android:inputType="textPassword"
             android:textAlignment="center" />
@@ -47,10 +63,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="30dp"
             android:backgroundTint="@color/green"
             android:text="@string/login"
-            android:textColor="@color/black" />
+            android:textColor="@color/lime_green" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:text="@string/forgot_password" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -58,8 +79,8 @@
         android:id="@+id/btn_signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/blue"
         android:layout_marginBottom="30dp"
+        android:backgroundTint="@color/blue"
         android:text="@string/sign_up"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"

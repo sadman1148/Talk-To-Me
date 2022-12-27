@@ -6,4 +6,6 @@
     <string name="password">Password</string>
     <string name="login">LOGIN</string>
     <string name="sign_up">SIGN UP</string>
+    <string name="talk_to_me_baby">Talk To Me Baby</string>
+    <string name="forgot_password">Forgot password?</string>
 </resources>

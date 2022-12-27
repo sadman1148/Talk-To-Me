@@ -27,7 +27,6 @@ class Splash : Fragment() {
         Handler(Looper.getMainLooper()).postDelayed({
             findNavController().navigate(R.id.action_splash_to_login)
         },2000)
-        onDestroy()
     }
 
 }
