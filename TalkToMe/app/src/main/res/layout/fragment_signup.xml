@@ -1,21 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/black"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".fragments.Signup">
 
-    <TextView
-        android:id="@+id/tv_signup"
-        android:layout_width="@dimen/dp_100"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/dp_8"
-        android:background="@color/blue"
-        android:textAlignment="center"
-        android:text="@string/sign_up"
-        android:textColor="@color/white" />
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginBottom="@dimen/dp_30"
+        android:fontFamily="@font/caveat_brush"
+        android:gravity="center"
+        android:shadowColor="@color/Yellow"
+        android:shadowRadius="25"
+        android:text="@string/talk_to_me_baby"
+        android:textColor="@color/Yellow"
+        android:textSize="@dimen/sp_36"
+        android:transitionName="@string/talk_to_me_baby"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayoutCompat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/linearLayoutCompat"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_width="@dimen/dp_250"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_signup"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_36"
+            android:background="@color/blue"
+            android:gravity="center"
+            android:text="@string/sign_up"
+            android:textColor="@color/white"
+            android:transitionName="@string/sign_up" />
+
+        <EditText
+            android:id="@+id/et_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_50"
+            android:layout_marginTop="@dimen/dp_10"
+            android:hint="@string/username"
+            android:inputType="text"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_50"
+            android:layout_marginTop="@dimen/dp_10"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_50"
+            android:layout_marginTop="@dimen/dp_10"
+            android:focusable="true"
+            android:hint="@string/password"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:inputType="textPassword"
+            android:textAlignment="center" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/green"
+        android:layout_marginTop="@dimen/dp_30"
+        android:text="@string/join"
+        android:textColor="@color/lime_green"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

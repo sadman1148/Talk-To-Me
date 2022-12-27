@@ -32,7 +32,7 @@
         android:label="fragment_signup"
         tools:layout="@layout/fragment_signup" >
         <action
-            android:id="@+id/action_signup_to_login2"
+            android:id="@+id/action_signup_to_login"
             app:destination="@id/login" />
     </fragment>
 
