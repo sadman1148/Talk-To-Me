@@ -9,6 +9,7 @@
     tools:context=".fragments.Login">
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/banner"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_60"
         android:layout_marginBottom="@dimen/dp_30"

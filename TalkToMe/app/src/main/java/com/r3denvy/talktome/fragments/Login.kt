@@ -7,10 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import androidx.core.app.ActivityOptionsCompat.makeSceneTransitionAnimation
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.r3denvy.talktome.R
 import com.r3denvy.talktome.databinding.FragmentLoginBinding
+
 
 class Login : Fragment(), View.OnClickListener {
 
@@ -36,7 +39,17 @@ class Login : Fragment(), View.OnClickListener {
                 binding.etPassword.clearFocus()
                 binding.etUsername.clearFocus()
             }
-            binding.btnSignup -> findNavController().navigate(R.id.action_login_to_signup)
+            binding.btnSignup -> {
+                findNavController().navigate(
+                    R.id.action_login_to_signup,
+                    null,
+                    null,
+                    FragmentNavigatorExtras(
+                        binding.btnSignup to getString(R.string.sign_up),
+                        binding.banner to getString(R.string.talk_to_me_baby)
+                    )
+                )
+            }
         }
     }
 

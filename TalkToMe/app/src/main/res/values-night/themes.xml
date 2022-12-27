@@ -15,5 +15,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
 
+        <!-- Shared Transition. -->
+        <item name="android:windowContentTransitions">true</item>
+
     </style>
 </resources>
