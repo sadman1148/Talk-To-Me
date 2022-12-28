@@ -21,7 +21,6 @@ class Splash : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentSplashBinding.inflate(inflater)
         return binding.root
     }

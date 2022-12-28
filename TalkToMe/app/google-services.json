@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "386482702721",
+    "project_id": "talk-to-me-ecfe9",
+    "storage_bucket": "talk-to-me-ecfe9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:386482702721:android:3cd44cafe09d123ca18080",
+        "android_client_info": {
+          "package_name": "com.r3denvy.talktome"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "386482702721-lpiscgosj92a8vlnjgfssnomj66ifb9g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABRwtVezbtvOl9sti-8TH_earnv1wvM4A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "386482702721-lpiscgosj92a8vlnjgfssnomj66ifb9g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
