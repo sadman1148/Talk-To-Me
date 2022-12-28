@@ -34,6 +34,7 @@
         android:background="@drawable/login_card_bg"
         android:gravity="center"
         android:orientation="vertical"
+        android:transitionName="@string/linearLayoutCompat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +48,8 @@
             android:layout_marginTop="@dimen/dp_30"
             android:hint="@string/username"
             android:inputType="text"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:transitionName="@string/username" />
 
         <EditText
             android:id="@+id/et_password"
@@ -58,7 +60,8 @@
             android:focusable="true"
             android:hint="@string/password"
             android:inputType="textPassword"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:transitionName="@string/password" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_login"

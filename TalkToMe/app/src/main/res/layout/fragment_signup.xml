@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/black"
     android:gravity="center"
+    android:id="@+id/layout"
     android:orientation="vertical"
     tools:context=".fragments.Signup">
 
@@ -28,24 +29,28 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linearLayoutCompat"
-        android:layout_width="@dimen/dp_250"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:layout_marginStart="@dimen/dp_75"
+        android:layout_marginEnd="@dimen/dp_75"
+        android:background="@drawable/login_card_bg"
+        android:gravity="center"
         android:orientation="vertical"
+        android:transitionName="@string/linearLayoutCompat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/tv_signup"
+        <EditText
+            android:id="@+id/et_email"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_36"
-            android:background="@color/blue"
-            android:gravity="center"
-            android:text="@string/sign_up"
-            android:textColor="@color/white"
-            android:transitionName="@string/sign_up" />
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_50"
+            android:layout_marginTop="@dimen/dp_30"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:textAlignment="center" />
 
         <EditText
             android:id="@+id/et_username"
@@ -55,17 +60,8 @@
             android:layout_marginTop="@dimen/dp_10"
             android:hint="@string/username"
             android:inputType="text"
-            android:textAlignment="center" />
-
-        <EditText
-            android:id="@+id/et_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/dp_50"
-            android:layout_marginTop="@dimen/dp_10"
-            android:hint="@string/email"
-            android:inputType="textEmailAddress"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:transitionName="@string/username" />
 
         <EditText
             android:id="@+id/et_password"
@@ -73,24 +69,23 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/dp_50"
             android:layout_marginTop="@dimen/dp_10"
-            android:layout_marginBottom="@dimen/dp_20"
             android:focusable="true"
             android:hint="@string/password"
             android:inputType="textPassword"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:transitionName="@string/password" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_signup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginBottom="@dimen/dp_30"
+            android:backgroundTint="@color/blue"
+            android:text="@string/sign_up"
+            android:textColor="@color/white"
+            android:transitionName="@string/login" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_30"
-        android:backgroundTint="@color/green"
-        android:text="@string/join"
-        android:textColor="@color/lime_green"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
