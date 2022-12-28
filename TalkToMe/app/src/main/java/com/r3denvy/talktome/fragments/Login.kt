@@ -5,10 +5,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionInflater
+import com.google.firebase.auth.FirebaseAuth
 import com.r3denvy.talktome.R
 import com.r3denvy.talktome.databinding.FragmentLoginBinding
 import com.r3denvy.talktome.util.Utils
@@ -18,6 +20,12 @@ class Login : Fragment(), View.OnClickListener {
 
     private lateinit var binding: FragmentLoginBinding
     private val TAG = "Login Fragment"
+    private lateinit var mAuth: FirebaseAuth
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mAuth = FirebaseAuth.getInstance()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,7 +49,7 @@ class Login : Fragment(), View.OnClickListener {
         when (view) {
             binding.layout -> {
                 Log.d(TAG, "onClick() > Layout tap.")
-                Utils.clearFocusAndHideKeyboard(this, binding.etPassword, binding.etUsername, null)
+                Utils.clearFocusAndHideKeyboard(this, binding.etPassword, binding.etEmail)
             }
             binding.btnSignup -> {
                 Log.d(TAG, "onClick() > SignUp button tap.")
@@ -51,14 +59,26 @@ class Login : Fragment(), View.OnClickListener {
                     null,
                     FragmentNavigatorExtras(
                         binding.btnSignup to getString(R.string.login),
-                        binding.banner to getString(R.string.talk_to_me_baby),
-                        binding.linearLayoutCompat to getString(R.string.linearLayoutCompat),
-                        binding.etUsername to getString(R.string.username),
-                        binding.etPassword to getString(R.string.password)
                     )
                 )
             }
+            binding.btnLogin -> {
+                login(binding.etEmail.text.toString(), binding.etPassword.text.toString())
+            }
         }
+    }
+
+    private fun login(email: String, password: String) {
+        mAuth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(requireActivity()) { task ->
+                if (task.isSuccessful) {
+                    Log.d(TAG, "signUp() > createUserWithEmail: success")
+                    findNavController().navigate(R.id.action_login_to_home)
+                } else {
+                    Log.w(TAG, "signUp() > createUserWithEmail: failure", task.exception)
+                    Toast.makeText(requireContext(), "Login failed", Toast.LENGTH_SHORT).show()
+                }
+            }
     }
 
 }

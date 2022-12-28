@@ -8,11 +8,10 @@ import androidx.fragment.app.Fragment
 
 object Utils {
 
-    fun clearFocusAndHideKeyboard(fragment: Fragment, view1: View?, view2: View?, view3: View?) {
+    fun clearFocusAndHideKeyboard(fragment: Fragment, view1: View, view2: View) {
         fragment.hideKeyboard()
-        view1?.clearFocus()
-        view2?.clearFocus()
-        view3?.clearFocus()
+        view1.clearFocus()
+        view2.clearFocus()
     }
 
     private fun Fragment.hideKeyboard() {

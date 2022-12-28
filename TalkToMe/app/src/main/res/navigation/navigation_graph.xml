@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_login_to_signup"
             app:destination="@id/signup" />
+        <action
+            android:id="@+id/action_login_to_home"
+            app:destination="@id/home" />
     </fragment>
 
     <fragment
@@ -40,6 +43,15 @@
         tools:layout="@layout/fragment_signup">
         <action
             android:id="@+id/action_signup_to_login"
+            app:destination="@id/login" />
+    </fragment>
+    <fragment
+        android:id="@+id/home"
+        android:name="com.r3denvy.talktome.fragments.Home"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_to_login"
             app:destination="@id/login" />
     </fragment>
 
