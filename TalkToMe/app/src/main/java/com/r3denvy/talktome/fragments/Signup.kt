@@ -25,14 +25,19 @@ class Signup : Fragment(), View.OnClickListener {
         mAuth = FirebaseAuth.getInstance()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = FragmentSignupBinding.inflate(inflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        sharedElementEnterTransition = TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
+        sharedElementEnterTransition =
+            TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
         binding.apply {
             layout.setOnClickListener(this@Signup)
         }
@@ -42,25 +47,35 @@ class Signup : Fragment(), View.OnClickListener {
         when (view) {
             binding.layout -> {
                 Log.d(TAG, "onClick() > Layout tap.")
-                Utils.clearFocusAndHideKeyboard(this, binding.etPassword, binding.etEmail)
+                Utils.clearFocusAndHideKeyboard(this, binding.etPassword, binding.etEmail, binding.etUsername)
             }
             binding.btnSignup -> {
-                signUp(binding.etEmail.text.toString(), binding.etPassword.text.toString())
+                signUp(
+                    binding.etUsername.text.toString(),
+                    binding.etEmail.text.toString(),
+                    binding.etPassword.text.toString()
+                )
+                Utils.clearFocusAndHideKeyboard(this, binding.etPassword, binding.etEmail, binding.etUsername)
             }
         }
     }
 
-    private fun signUp(email: String, password: String) {
+    private fun signUp(name: String, email: String, password: String) {
         mAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
                     Log.d(TAG, "signUp() > createUserWithEmail: success")
+                    addUserToDB(name, email, mAuth.uid)
                     findNavController().navigate(R.id.action_login_to_home)
                 } else {
                     Log.w(TAG, "signUp() > createUserWithEmail: failure", task.exception)
                     Toast.makeText(requireContext(), "Signup failed.", Toast.LENGTH_SHORT).show()
                 }
             }
+    }
+
+    private fun addUserToDB(name: String, email: String, password: String?) {
+
     }
 
 }

@@ -49,7 +49,7 @@ class Login : Fragment(), View.OnClickListener {
         when (view) {
             binding.layout -> {
                 Log.d(TAG, "onClick() > Layout tap.")
-                Utils.clearFocusAndHideKeyboard(this, binding.etPassword, binding.etEmail)
+                Utils.clearFocusAndHideKeyboard(this, binding.etPassword, binding.etEmail, null)
             }
             binding.btnSignup -> {
                 Log.d(TAG, "onClick() > SignUp button tap.")
@@ -59,11 +59,18 @@ class Login : Fragment(), View.OnClickListener {
                     null,
                     FragmentNavigatorExtras(
                         binding.btnSignup to getString(R.string.login),
+                        binding.banner to getString(R.string.talk_to_me_baby),
+                        binding.etPassword to getString(R.string.password),
+                        binding.etEmail to getString(R.string.email),
+                        binding.linearLayoutCompat to getString(R.string.linearLayoutCompat)
                     )
                 )
+                binding.etEmail.text.clear()
+                binding.etPassword.text.clear()
             }
             binding.btnLogin -> {
                 login(binding.etEmail.text.toString(), binding.etPassword.text.toString())
+                Utils.clearFocusAndHideKeyboard(this, binding.etPassword, binding.etEmail, null)
             }
         }
     }

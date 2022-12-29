@@ -9,6 +9,7 @@
     tools:context=".fragments.Login">
 
     <com.google.android.material.textview.MaterialTextView
+        android:transitionName="@string/talk_to_me_baby"
         android:id="@+id/banner"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_60"
@@ -25,6 +26,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:transitionName="@string/linearLayoutCompat"
         android:id="@+id/linearLayoutCompat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,6 +41,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
+            android:transitionName="@string/email"
             android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -49,6 +52,7 @@
             android:textAlignment="center"/>
 
         <EditText
+            android:transitionName="@string/password"
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
