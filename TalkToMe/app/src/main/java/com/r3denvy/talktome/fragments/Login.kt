@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
-import androidx.transition.TransitionInflater
 import com.google.firebase.auth.FirebaseAuth
 import com.r3denvy.talktome.R
 import com.r3denvy.talktome.databinding.FragmentLoginBinding
@@ -65,6 +64,7 @@ class Login : Fragment(), View.OnClickListener {
                 binding.etPassword.text.clear()
             }
             binding.btnLogin -> {
+                Log.d(TAG, "onClick() > Login button tap.")
                 val email = binding.etEmail.text.toString()
                 val password = binding.etPassword.text.toString()
                 if (email.isBlank() && password.isBlank()) {
@@ -89,7 +89,7 @@ class Login : Fragment(), View.OnClickListener {
     }
 
     private fun login(email: String, password: String) {
-        mAuth.createUserWithEmailAndPassword(email, password)
+        mAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
                     Log.d(TAG, "signUp() > createUserWithEmail: success")
