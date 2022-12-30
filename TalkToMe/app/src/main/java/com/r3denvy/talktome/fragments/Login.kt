@@ -93,7 +93,14 @@ class Login : Fragment(), View.OnClickListener {
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
                     Log.d(TAG, "signUp() > createUserWithEmail: success")
-                    findNavController().navigate(R.id.action_login_to_home)
+                    findNavController().navigate(
+                        R.id.action_login_to_home,
+                        null,
+                        null,
+                        FragmentNavigatorExtras(
+                            binding.banner to getString(R.string.talk_to_me_baby),
+                        )
+                    )
                 } else {
                     Log.w(TAG, "signUp() > createUserWithEmail: failure", task.exception)
                     Toast.makeText(requireContext(), "Login failed", Toast.LENGTH_SHORT).show()

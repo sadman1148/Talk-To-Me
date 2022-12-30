@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionInflater
 import com.google.firebase.auth.FirebaseAuth
@@ -86,7 +87,14 @@ class Signup : Fragment(), View.OnClickListener {
                 if (task.isSuccessful) {
                     Log.d(TAG, "signUp() > createUserWithEmail: success")
                     addUserToDB(name, email, mAuth.currentUser?.uid!!)
-                    findNavController().navigate(R.id.action_signup_to_home)
+                    findNavController().navigate(
+                        R.id.action_signup_to_home,
+                        null,
+                        null,
+                        FragmentNavigatorExtras(
+                            binding.banner to getString(R.string.talk_to_me_baby),
+                        )
+                    )
                 } else {
                     Log.w(TAG, "signUp() > createUserWithEmail: failure", task.exception)
                     Toast.makeText(requireContext(), "Signup failed.", Toast.LENGTH_SHORT).show()
