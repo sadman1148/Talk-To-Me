@@ -27,11 +27,7 @@ class Login : Fragment(), View.OnClickListener {
         mAuth = FirebaseAuth.getInstance()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentLoginBinding.inflate(inflater)
         return binding.root
     }
@@ -69,8 +65,25 @@ class Login : Fragment(), View.OnClickListener {
                 binding.etPassword.text.clear()
             }
             binding.btnLogin -> {
-                login(binding.etEmail.text.toString(), binding.etPassword.text.toString())
-                Utils.clearFocusAndHideKeyboard(this, binding.etPassword, binding.etEmail, null)
+                val email = binding.etEmail.text.toString()
+                val password = binding.etPassword.text.toString()
+                if (email.isBlank() && password.isBlank()) {
+                    Toast.makeText(context, "Please enter your credentials", Toast.LENGTH_SHORT).show()
+                } else if (email.isBlank()) {
+                    Toast.makeText(context, "Please enter your Email", Toast.LENGTH_SHORT).show()
+                    binding.etEmail.requestFocus()
+                } else if (password.isBlank()) {
+                    Toast.makeText(context, "Please enter your password", Toast.LENGTH_SHORT).show()
+                    binding.etPassword.requestFocus()
+                } else {
+                    if (!Utils.isValidEmail(email)) {
+                        Toast.makeText(context, "Invalid Email", Toast.LENGTH_SHORT).show()
+                        binding.etEmail.requestFocus()
+                    } else {
+                        login(email, password)
+                        Utils.clearFocusAndHideKeyboard(this, binding.etPassword, binding.etEmail, null)
+                    }
+                }
             }
         }
     }

@@ -25,21 +25,17 @@ class Signup : Fragment(), View.OnClickListener {
         mAuth = FirebaseAuth.getInstance()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentSignupBinding.inflate(inflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        sharedElementEnterTransition =
-            TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
+        sharedElementEnterTransition = TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
         binding.apply {
             layout.setOnClickListener(this@Signup)
+            btnSignup.setOnClickListener(this@Signup)
         }
     }
 
@@ -50,12 +46,30 @@ class Signup : Fragment(), View.OnClickListener {
                 Utils.clearFocusAndHideKeyboard(this, binding.etPassword, binding.etEmail, binding.etUsername)
             }
             binding.btnSignup -> {
-                signUp(
-                    binding.etUsername.text.toString(),
-                    binding.etEmail.text.toString(),
-                    binding.etPassword.text.toString()
-                )
-                Utils.clearFocusAndHideKeyboard(this, binding.etPassword, binding.etEmail, binding.etUsername)
+                val email = binding.etEmail.text.toString()
+                val password = binding.etPassword.text.toString()
+                val username = binding.etUsername.text.toString()
+                if (email.isBlank() && password.isBlank()) {
+                    Toast.makeText(context, "Please enter your credentials", Toast.LENGTH_SHORT).show()
+                } else if (email.isBlank()) {
+                    Toast.makeText(context, "Please enter an Email", Toast.LENGTH_SHORT).show()
+                    binding.etEmail.requestFocus()
+                } else if (password.isBlank()) {
+                    Toast.makeText(context, "Please enter a password", Toast.LENGTH_SHORT).show()
+                    binding.etPassword.requestFocus()
+                } else if (username.isBlank()) {
+                    Toast.makeText(context, "Please enter a username", Toast.LENGTH_SHORT).show()
+                    binding.etUsername.requestFocus()
+                } else {
+                    if (!Utils.isValidEmail(email)) {
+                        Toast.makeText(context, "Invalid Email", Toast.LENGTH_SHORT).show()
+                        binding.etEmail.requestFocus()
+                    } else {
+                        Log.d(TAG, "onClick() > Signup button tap.")
+                        signUp(username, email, password)
+                        Utils.clearFocusAndHideKeyboard(this, binding.etPassword, binding.etEmail, binding.etUsername)
+                    }
+                }
             }
         }
     }
@@ -65,7 +79,7 @@ class Signup : Fragment(), View.OnClickListener {
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
                     Log.d(TAG, "signUp() > createUserWithEmail: success")
-                    addUserToDB(name, email, mAuth.uid)
+                    addUserToDB(name, email, mAuth.currentUser?.uid!!)
                     findNavController().navigate(R.id.action_login_to_home)
                 } else {
                     Log.w(TAG, "signUp() > createUserWithEmail: failure", task.exception)
@@ -74,7 +88,7 @@ class Signup : Fragment(), View.OnClickListener {
             }
     }
 
-    private fun addUserToDB(name: String, email: String, password: String?) {
+    private fun addUserToDB(name: String, email: String, password: String) {
 
     }
 
