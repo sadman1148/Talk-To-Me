@@ -11,4 +11,6 @@
     <string name="email">Email</string>
     <string name="username">Username</string>
     <string name="linearLayoutCompat">linearLayoutCompat</string>
+    <string name="empty_box_text">You have no chats.\nTap the + icon to find users to chat with.</string>
+
 </resources>
