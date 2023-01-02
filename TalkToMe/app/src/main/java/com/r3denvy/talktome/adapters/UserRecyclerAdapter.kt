@@ -19,13 +19,11 @@ class UserRecyclerAdapter(val context: Context, val userList: ArrayList<User>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder =
         UserViewHolder(LayoutInflater.from(context).inflate(R.layout.user_frame, parent, false))
 
-
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val currentUser = userList[position]
         holder.userName.text = currentUser.name
     }
 
     override fun getItemCount(): Int = userList.size
-
 
 }

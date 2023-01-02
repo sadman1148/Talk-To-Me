@@ -5,12 +5,18 @@
     <string name="password">Password</string>
     <string name="login">LOGIN</string>
     <string name="sign_up">SIGN UP</string>
-    <string name="logout">LOGOUT</string>
+    <string name="LOGOUT">LOGOUT</string>
     <string name="talk_to_me_baby">Talk To Me Baby</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="email">Email</string>
     <string name="username">Username</string>
     <string name="linearLayoutCompat">linearLayoutCompat</string>
     <string name="empty_box_text">You have no chats.\nTap the + icon to find users to chat with.</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="Logout">Logout</string>
+    <string name="alert_logout">Are you sure you want to logout?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -17,7 +17,6 @@ import com.google.firebase.ktx.Firebase
 import com.r3denvy.talktome.R
 import com.r3denvy.talktome.databinding.FragmentSignupBinding
 import com.r3denvy.talktome.model.User
-import com.r3denvy.talktome.util.Constants
 import com.r3denvy.talktome.util.Utils
 
 class Signup : Fragment(), View.OnClickListener {
@@ -25,7 +24,7 @@ class Signup : Fragment(), View.OnClickListener {
     private lateinit var binding: FragmentSignupBinding
     private val TAG = "Signup Fragment"
     private lateinit var mAuth: FirebaseAuth
-    private lateinit var mDBRef: DatabaseReference
+    private lateinit var mDbRef: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,6 +71,8 @@ class Signup : Fragment(), View.OnClickListener {
                     if (!Utils.isValidEmail(email)) {
                         Toast.makeText(context, "Invalid Email", Toast.LENGTH_SHORT).show()
                         binding.etEmail.requestFocus()
+                    } else if (password.length < 8) {
+                        Toast.makeText(context, "Password must be atleast 8 characters", Toast.LENGTH_SHORT).show()
                     } else {
                         signUp(username, email, password)
                         Utils.clearFocusAndHideKeyboard(this, binding.etPassword, binding.etEmail, binding.etUsername)
@@ -87,14 +88,8 @@ class Signup : Fragment(), View.OnClickListener {
                 if (task.isSuccessful) {
                     Log.d(TAG, "signUp() > createUserWithEmail: success")
                     addUserToDB(name, email, mAuth.currentUser?.uid!!)
-                    findNavController().navigate(
-                        R.id.action_signup_to_home,
-                        null,
-                        null,
-                        FragmentNavigatorExtras(
-                            binding.banner to getString(R.string.talk_to_me_baby),
-                        )
-                    )
+                    findNavController().popBackStack()
+                    Toast.makeText(requireContext(), "Signup Successful, please login.", Toast.LENGTH_LONG).show()
                 } else {
                     Log.w(TAG, "signUp() > createUserWithEmail: failure", task.exception)
                     Toast.makeText(requireContext(), "Signup failed.", Toast.LENGTH_SHORT).show()
@@ -103,8 +98,8 @@ class Signup : Fragment(), View.OnClickListener {
     }
 
     private fun addUserToDB(name: String, email: String, uid: String) {
-        mDBRef = Firebase.database.reference
-        mDBRef.child("user").child(uid).setValue(User(name,email,uid))
+        mDbRef = Firebase.database.reference
+        mDbRef.child("user").child(uid).setValue(User(name,email,uid))
     }
 
 }

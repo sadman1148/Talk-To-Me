@@ -10,34 +10,29 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/dp_15"
         android:layout_marginBottom="@dimen/dp_15"
-        android:background="@drawable/user_card_bg">
+        android:background="@color/dark_grey">
 
-        <androidx.cardview.widget.CardView
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/user_photo"
             android:layout_width="@dimen/dp_70"
             android:layout_height="@dimen/dp_70"
-            android:layout_margin="@dimen/dp_10"
-            app:cardCornerRadius="250dp">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/user_photo"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </androidx.cardview.widget.CardView>
-
+            android:layout_margin="@dimen/dp_2" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginVertical="@dimen/dp_10"
-            android:layout_marginEnd="@dimen/dp_10"
+            android:layout_marginVertical="@dimen/dp_2"
+            android:layout_marginEnd="@dimen/dp_2"
             android:layout_weight="1"
+            android:background="@color/black"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
+                android:layout_marginStart="@dimen/dp_7"
                 android:layout_weight="1"
                 android:singleLine="true"
                 android:textColor="@color/white"
@@ -47,6 +42,7 @@
                 android:id="@+id/user_last_text"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
+                android:layout_marginStart="@dimen/dp_7"
                 android:layout_weight="1"
                 android:gravity="center|start"
                 android:singleLine="true"
