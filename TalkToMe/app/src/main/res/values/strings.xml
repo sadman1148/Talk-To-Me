@@ -18,5 +18,7 @@
     <string name="alert_logout">Are you sure you want to logout?</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="chatbox_hint">Type a message...</string>
+    <string name="blank_chatbox_toast_text">There is nothing to send</string>
 
 </resources>

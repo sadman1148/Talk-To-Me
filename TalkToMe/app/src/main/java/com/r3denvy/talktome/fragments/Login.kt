@@ -1,6 +1,7 @@
 package com.r3denvy.talktome.fragments
 
 import android.os.Bundle
+import android.os.SystemClock
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -14,9 +15,9 @@ import com.r3denvy.talktome.R
 import com.r3denvy.talktome.databinding.FragmentLoginBinding
 import com.r3denvy.talktome.util.Utils
 
-
 class Login : Fragment(), View.OnClickListener {
 
+    private var mLastClickTime: Long = 0
     private lateinit var binding: FragmentLoginBinding
     private val TAG = "Login Fragment"
     private lateinit var mAuth: FirebaseAuth
@@ -38,6 +39,7 @@ class Login : Fragment(), View.OnClickListener {
             btnLogin.setOnClickListener(this@Login)
             btnSignup.setOnClickListener(this@Login)
         }
+        if (mAuth.currentUser != null) navigateToHome()
     }
 
     override fun onClick(view: View) {
@@ -64,6 +66,8 @@ class Login : Fragment(), View.OnClickListener {
                 binding.etPassword.text.clear()
             }
             binding.btnLogin -> {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) return;
+                mLastClickTime = SystemClock.elapsedRealtime();
                 Log.d(TAG, "onClick() > Login button tap.")
                 val email = binding.etEmail.text.toString()
                 val password = binding.etPassword.text.toString()
@@ -93,19 +97,23 @@ class Login : Fragment(), View.OnClickListener {
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
                     Log.d(TAG, "signUp() > createUserWithEmail: success")
-                    findNavController().navigate(
-                        R.id.action_login_to_home,
-                        null,
-                        null,
-                        FragmentNavigatorExtras(
-                            binding.banner to getString(R.string.talk_to_me_baby),
-                        )
-                    )
+                    navigateToHome()
                 } else {
                     Log.w(TAG, "signUp() > createUserWithEmail: failure", task.exception)
                     Toast.makeText(requireContext(), "Login failed", Toast.LENGTH_SHORT).show()
                 }
             }
+    }
+
+    private fun navigateToHome() {
+        findNavController().navigate(
+            R.id.action_login_to_home,
+            null,
+            null,
+            FragmentNavigatorExtras(
+                binding.banner to getString(R.string.talk_to_me_baby),
+            )
+        )
     }
 
 }

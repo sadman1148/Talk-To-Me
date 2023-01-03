@@ -60,6 +60,16 @@
             app:destination="@id/login"
             app:popUpTo="@id/home"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_home_to_chat"
+            app:destination="@id/chat" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/chat"
+        android:name="com.r3denvy.talktome.fragments.Chat"
+        android:label="fragment_chat"
+        tools:layout="@layout/fragment_chat" >
     </fragment>
 
 </navigation>

@@ -1,26 +1,26 @@
 package com.r3denvy.talktome.fragments
 
 import android.os.Bundle
+import android.os.SystemClock
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionInflater
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.r3denvy.talktome.R
 import com.r3denvy.talktome.databinding.FragmentSignupBinding
 import com.r3denvy.talktome.model.User
 import com.r3denvy.talktome.util.Utils
 
 class Signup : Fragment(), View.OnClickListener {
 
+    private var mLastClickTime: Long = 0
     private lateinit var binding: FragmentSignupBinding
     private val TAG = "Signup Fragment"
     private lateinit var mAuth: FirebaseAuth
@@ -52,6 +52,7 @@ class Signup : Fragment(), View.OnClickListener {
                 Utils.clearFocusAndHideKeyboard(this, binding.etPassword, binding.etEmail, binding.etUsername)
             }
             binding.btnSignup -> {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) return;
                 Log.d(TAG, "onClick() > Signup button tap.")
                 val email = binding.etEmail.text.toString()
                 val password = binding.etPassword.text.toString()

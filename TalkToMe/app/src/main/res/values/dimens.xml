@@ -1,6 +1,7 @@
 <resources>
 
     <!-- dp dimens -->
+    <dimen name="dp_0">0dp</dimen>
     <dimen name="dp_1">1dp</dimen>
     <dimen name="dp_2">2dp</dimen>
     <dimen name="dp_3">3dp</dimen>
@@ -24,8 +25,10 @@
     <dimen name="dp_150">150dp</dimen>
     <dimen name="dp_200">200dp</dimen>
     <dimen name="dp_250">250dp</dimen>
+    <dimen name="dp_300">300dp</dimen>
 
     <!-- sp dimens -->
+    <dimen name="sp_20">20sp</dimen>
     <dimen name="sp_25">25sp</dimen>
     <dimen name="sp_30">30sp</dimen>
     <dimen name="sp_36">36sp</dimen>

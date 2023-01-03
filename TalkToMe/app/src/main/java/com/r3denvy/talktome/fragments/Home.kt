@@ -46,8 +46,6 @@ class Home : Fragment(), View.OnClickListener {
                     if (mAuth.currentUser?.uid != currentUser?.uid) {
                         Log.d(TAG, "User: ${currentUser?.name} added to list.")
                         userList.add(currentUser!!)
-                    } else {
-                        binding.tvUsername.text = currentUser?.name.toString()
                     }
                 }
                 userRecyclerAdapter.notifyDataSetChanged()
@@ -75,6 +73,12 @@ class Home : Fragment(), View.OnClickListener {
         binding.rvUsers.adapter = userRecyclerAdapter
         binding.rvUsers.layoutManager = LinearLayoutManager(requireContext())
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        //TODO: fix this
+        binding.tvUsername.text = mDbRef.child("user").child(mAuth.currentUser!!.uid).child("name").toString()
     }
 
     override fun onClick(v: View?) {
