@@ -1,7 +1,9 @@
 package com.r3denvy.talktome.fragments
 
 import android.app.AlertDialog
+import android.content.Context.MODE_PRIVATE
 import android.content.DialogInterface
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -30,10 +32,12 @@ class Home : Fragment(), View.OnClickListener {
     private lateinit var userRecyclerAdapter: UserRecyclerAdapter
     private lateinit var mAuth: FirebaseAuth
     private lateinit var mDbRef: DatabaseReference
+    private lateinit var sharedPreferences: SharedPreferences
     private val TAG: String = "Home Fragment"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        sharedPreferences = requireActivity().getPreferences(MODE_PRIVATE)
         userList = ArrayList()
         userRecyclerAdapter = UserRecyclerAdapter(requireContext(), userList)
         mAuth = FirebaseAuth.getInstance()
@@ -46,6 +50,8 @@ class Home : Fragment(), View.OnClickListener {
                     if (mAuth.currentUser?.uid != currentUser?.uid) {
                         Log.d(TAG, "User: ${currentUser?.name} added to list.")
                         userList.add(currentUser!!)
+                    } else {
+                        sharedPreferences.edit().putString(getString(R.string.LOGGED_USERNAME_KEY), currentUser?.name.toString()).apply()
                     }
                 }
                 userRecyclerAdapter.notifyDataSetChanged()
@@ -72,13 +78,8 @@ class Home : Fragment(), View.OnClickListener {
         binding.ivLogout.setOnClickListener(this@Home)
         binding.rvUsers.adapter = userRecyclerAdapter
         binding.rvUsers.layoutManager = LinearLayoutManager(requireContext())
+        binding.tvUsername.text = sharedPreferences.getString(getString(R.string.LOGGED_USERNAME_KEY),",Talk To Me")
         return binding.root
-    }
-
-    override fun onResume() {
-        super.onResume()
-        //TODO: fix this
-        binding.tvUsername.text = mDbRef.child("user").child(mAuth.currentUser!!.uid).child("name").toString()
     }
 
     override fun onClick(v: View?) {
@@ -92,6 +93,7 @@ class Home : Fragment(), View.OnClickListener {
                         DialogInterface.OnClickListener { _, _ ->
                             mAuth.signOut()
                             findNavController().navigate(R.id.action_home_to_login)
+                            sharedPreferences.edit().clear().apply()
                         })
                     .setNegativeButton(getString(R.string.no), null)
                     .setIcon(R.drawable.ic_logout)
